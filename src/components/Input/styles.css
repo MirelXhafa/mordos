@@ -1,0 +1,6 @@
+.form-input {
+  display: inline-block;
+  padding: 7px 5px;
+  border-radius: 4px;
+  border: 1px solid var(--border-color-grey);
+}

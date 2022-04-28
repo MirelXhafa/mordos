@@ -1,0 +1,14 @@
+.menu-bar {
+  display: "flex";
+  background-color: var(--primary-color);
+  padding: 7px 5px;
+}
+
+.menu-bar-logo {
+  padding: 7px 5px;
+  border-radius: 8;
+}
+
+.menu-bar-logo:hover {
+  background-color: var(--secondary-color);
+}

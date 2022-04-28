@@ -1,0 +1,17 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 10px;
+}
+
+.form-group > label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}

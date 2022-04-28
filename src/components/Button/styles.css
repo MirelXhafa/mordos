@@ -1,0 +1,12 @@
+.btn {
+  display: inline-block;
+  padding: 7px 20px;
+  background-color: var(--primary-color);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+}
+
+.btn-block {
+  width: 100%;
+  display: block;
+}
