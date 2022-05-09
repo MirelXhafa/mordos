@@ -25,6 +25,18 @@ const MainContent: React.FC = () => {
       });
   }, []);
 
+  const renderGalleryItems = () => {
+    if (images.length > 0) {
+      return images.map((image) => (
+        <div className="gallery-item">
+          <img src={image.thumbnailUrl} />
+        </div>
+      ));
+    } else {
+      return <p>No images to display</p>;
+    }
+  };
+
   return (
     <div className="container main-content-container">
       <div className="main-content">
@@ -48,13 +60,7 @@ const MainContent: React.FC = () => {
           setIsModalOpen(false);
         }}
       >
-        <div className="gallery-container">
-          {images.map((image) => (
-            <div className="gallery-item">
-              <img src={image.thumbnailUrl} />
-            </div>
-          ))}
-        </div>
+        <div className="gallery-container">{renderGalleryItems()}</div>
       </Modal>
     </div>
   );
