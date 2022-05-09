@@ -36,41 +36,39 @@ const saveUser = (user: TUserModel) => {
 const signin = (username: string, password: string) => {
   return new Promise((resolve, reject) => {
     // find user
-    let user = users.find((user: TUserModel) => user.username === username)
+    let user = users.find((user: TUserModel) => user.username === username);
 
     if (user) {
-      // check password
-
-      if(user.password === password) {
+      // after finding user then check password match
+      if (user.password === password) {
+        console.log("user: ", user);
         resolve({
           error: false,
-          message: '',
-          data: user
-        })
+          message: "",
+          data: user,
+        });
       } else {
         reject({
           error: true,
-          message: 'Username or password is wrong',
-          data: []
-        })
+          message: "Username or password is wrong",
+          data: [],
+        });
         return;
       }
-
     } else {
       reject({
         error: true,
-        message: 'Username or password is wrong',
-        data: []
-      })
+        message: "Username or password is wrong",
+        data: [],
+      });
       return;
     }
-
-  })
-}
+  });
+};
 
 const Users = {
   saveUser,
-  signin
+  signin,
 };
 
 export default Users;

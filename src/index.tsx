@@ -7,6 +7,8 @@ import { Provider } from "react-redux";
 import { store } from "./store/store";
 import AuthProvider from "./providers/AuthProvider";
 import history from "./utilities/history";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 
 /**
  * HistoryRouter may have some issues with react 18.
@@ -23,6 +25,17 @@ root.render(
       <HistoryRouter history={history}>
         <AuthProvider>
           <AppRoutes />
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+          />
         </AuthProvider>
       </HistoryRouter>
     </Provider>

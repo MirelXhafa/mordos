@@ -8,8 +8,9 @@ import { PageLoginValidations } from "./validation";
 import DefaultAvatar from "../../assets/images/avatars/avatar.avif";
 import { Link } from "react-router-dom";
 import Content from "../../components/Content/Content";
-import { useAppDispatch } from "../../hooks/redux";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { PageLoginActions } from "../../store/actions/PageLoginActions";
+import { selectAccountLoading } from "../../store/selectors/AccountSelectors";
 
 interface LoginPageProps {}
 
@@ -24,19 +25,21 @@ const loginFormInitialValues: TLoginFormInitialValues = {
 };
 
 const Login: React.FC<LoginPageProps> = () => {
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
 
-  const handleSubmit = (values: TLoginFormInitialValues) => {
-    dispatch(PageLoginActions.pageLoginAuthRequest(values))
-  }
+  const loading = useAppSelector(selectAccountLoading);
+
+  const submit = (values: TLoginFormInitialValues) => {
+    dispatch(PageLoginActions.pageLoginAuthRequest(values));
+  };
 
   useEffect(() => {
-    dispatch(PageLoginActions.pageLoginLanding())
+    dispatch(PageLoginActions.pageLoginLanding());
 
     return () => {
-      dispatch(PageLoginActions.pageLoginDimiss())
-    }
-  }, [dispatch])
+      dispatch(PageLoginActions.pageLoginDimiss());
+    };
+  }, [dispatch]);
 
   return (
     <div className="container d-flex login-container">
@@ -55,7 +58,7 @@ const Login: React.FC<LoginPageProps> = () => {
             initialValues={loginFormInitialValues}
             validationSchema={PageLoginValidations.LoginValidationSchema}
             onSubmit={(values, { setSubmitting }) => {
-              handleSubmit(values)
+              submit(values);
               setSubmitting(false);
             }}
           >
@@ -93,7 +96,7 @@ const Login: React.FC<LoginPageProps> = () => {
                 </div>
                 <div className="form-group">
                   <Button
-                    text="Log In"
+                    text={loading ? "loading..." : "Log In"}
                     disabled={isSubmitting}
                     onClick={handleSubmit}
                     type="submit"

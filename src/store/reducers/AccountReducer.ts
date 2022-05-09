@@ -54,6 +54,10 @@ export default createReducer(INITIAL_STATE, (builder) => {
       state.error.hasError = false;
       state.userInfo = action.payload;
     })
+    .addCase(PageLoginActions.pageLoginAuthFailure, (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    })
     .addCase(PageRegisterActions.PageRegisterButtonPressed, (state) => {
       state.loading = true;
       state.error.hasError = false;
