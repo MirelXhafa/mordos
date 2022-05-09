@@ -1,5 +1,5 @@
 import { Formik } from "formik";
-import React from "react";
+import React, { useEffect } from "react";
 import Avatar from "../../components/Avatar/Avatar";
 import Button from "../../components/Button/Button";
 import Input from "../../components/Input/Input";
@@ -8,6 +8,8 @@ import { PageLoginValidations } from "./validation";
 import DefaultAvatar from "../../assets/images/avatars/avatar.avif";
 import { Link } from "react-router-dom";
 import Content from "../../components/Content/Content";
+import { useAppDispatch } from "../../hooks/redux";
+import { PageLoginActions } from "../../store/actions/PageLoginActions";
 
 interface LoginPageProps {}
 
@@ -16,11 +18,25 @@ type TLoginFormInitialValues = {
   password: string;
 };
 
+const loginFormInitialValues: TLoginFormInitialValues = {
+  username: "",
+  password: "",
+};
+
 const Login: React.FC<LoginPageProps> = () => {
-  const loginFormInitialValues: TLoginFormInitialValues = {
-    username: "",
-    password: "",
-  };
+  const dispatch = useAppDispatch()
+
+  const handleSubmit = (values: TLoginFormInitialValues) => {
+    dispatch(PageLoginActions.pageLoginAuthRequest(values))
+  }
+
+  useEffect(() => {
+    dispatch(PageLoginActions.pageLoginLanding())
+
+    return () => {
+      dispatch(PageLoginActions.pageLoginDimiss())
+    }
+  }, [dispatch])
 
   return (
     <div className="container d-flex login-container">
@@ -39,7 +55,7 @@ const Login: React.FC<LoginPageProps> = () => {
             initialValues={loginFormInitialValues}
             validationSchema={PageLoginValidations.LoginValidationSchema}
             onSubmit={(values, { setSubmitting }) => {
-              console.log("Values: ", values);
+              handleSubmit(values)
               setSubmitting(false);
             }}
           >

@@ -10,34 +10,10 @@ const userExists = (username: string) => {
   return exists;
 };
 
-// const saveUser = (user: TUserModel) => {
-//   try {
-//     if (userExists(user.username).length === 0) {
-//       const newUsers = [...users, user];
-
-//       storage.setItem("users", JSON.stringify(newUsers));
-
-//       setTimeout(() => {
-//         return {
-//           error: false,
-//           data: user,
-//           message: "",
-//         };
-//       }, 500);
-//     } else {
-//       throw new Error("User already exists");
-//     }
-//   } catch (e) {
-//     throw new Error("e: " + e);
-//   }
-// };
-
 const saveUser = (user: TUserModel) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       const exists = userExists(user.username);
-
-      console.log("exists: ", exists);
 
       if (exists.length > 0) {
         reject("User already exists");
@@ -57,8 +33,44 @@ const saveUser = (user: TUserModel) => {
   });
 };
 
+const signin = (username: string, password: string) => {
+  return new Promise((resolve, reject) => {
+    // find user
+    let user = users.find((user: TUserModel) => user.username === username)
+
+    if (user) {
+      // check password
+
+      if(user.password === password) {
+        resolve({
+          error: false,
+          message: '',
+          data: user
+        })
+      } else {
+        reject({
+          error: true,
+          message: 'Username or password is wrong',
+          data: []
+        })
+        return;
+      }
+
+    } else {
+      reject({
+        error: true,
+        message: 'Username or password is wrong',
+        data: []
+      })
+      return;
+    }
+
+  })
+}
+
 const Users = {
   saveUser,
+  signin
 };
 
 export default Users;

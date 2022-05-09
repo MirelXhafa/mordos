@@ -8,6 +8,8 @@ import PageRegisterActions, {
   TRegisterFormData,
 } from "../../store/actions/PageRegisterAction";
 import { selectAccountLoading } from "../../store/selectors/AccountSelectors";
+import { TUserModel } from "../../utilities/Users/Models/UserModel";
+import { v4 as uuidv4 } from 'uuid';
 import "./styles.css";
 
 interface RegisterProps {}
@@ -32,8 +34,11 @@ const Register: React.FC<RegisterProps> = () => {
   const loading = useAppSelector(selectAccountLoading);
 
   const handleSubmit = (values: TRegisterForm) => {
-    const registerData: TRegisterFormData = {
+    const id = uuidv4()
+
+    const registerData: TUserModel = {
       ...values,
+      id: id,
       isLoggedIn: false,
       settings: {
         timezone: "",

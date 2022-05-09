@@ -1,4 +1,3 @@
-import { fork } from "child_process";
 import { SagaIterator } from "redux-saga";
 import {
   call,
@@ -8,10 +7,12 @@ import {
   take,
   takeEvery,
   takeLatest,
+  fork
 } from "redux-saga/effects";
 import history from "../../utilities/history";
 import Users from "../../utilities/Users/User";
 import PageRegisterActions from "../actions/PageRegisterAction";
+import { workerSaveUser } from "./WorkerUserSaga";
 
 function* workerPageRegister(): SagaIterator {
   try {
@@ -26,24 +27,10 @@ function* workerPageRegister(): SagaIterator {
       if (whatHappened.registerButtonPress) {
         const { payload } = whatHappened.registerButtonPress;
 
-        registerUser = yield call(Users.saveUser, payload);
-        const error = registerUser?.error;
-        const data = registerUser?.data;
-        const errorMessage = registerUser?.message;
+        registerUser = yield fork(workerSaveUser, payload)
 
-        // console.log("here: ", registerUser);
+        yield call([history, history.push], '/login')
 
-        if (!error) {
-          yield put(PageRegisterActions.PageRegisterUserSaveSuccess(data));
-          yield call([history, history.push], "/login");
-        } else {
-          yield put(
-            PageRegisterActions.PageRegisterUserSaveFailure({
-              error: true,
-              message: errorMessage,
-            })
-          );
-        }
       } else if (whatHappened.dimiss) {
         if (registerUser) {
           yield cancel(registerUser);
