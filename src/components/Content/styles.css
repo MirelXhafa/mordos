@@ -1,0 +1,5 @@
+.content {
+  width: 40%;
+  box-shadow: 1px 1px 7px 2px var(--border-color-grey);
+  border-radius: 5px;
+}

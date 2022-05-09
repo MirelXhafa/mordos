@@ -8,7 +8,15 @@ const MenuBar: React.FC<MenuBarProps> = () => {
     <div className="menu-bar">
       <a className="menu-bar-logo">MordOS</a>
 
-      <div></div>
+      <div className="menu-container">
+        <ul>
+          <li className="dropdown">
+            <a href="#">Profile</a>
+
+            <div className="dropdown-menu"></div>
+          </li>
+        </ul>
+      </div>
     </div>
   );
 };

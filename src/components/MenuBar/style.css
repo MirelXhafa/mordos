@@ -1,7 +1,8 @@
 .menu-bar {
   display: "flex";
-  background-color: var(--primary-color);
+  background-color: var(--primary-white);
   padding: 7px 5px;
+  border-bottom: 1px solid var(--border-color-grey);
 }
 
 .menu-bar-logo {
@@ -10,5 +11,6 @@
 }
 
 .menu-bar-logo:hover {
-  background-color: var(--secondary-color);
+  background-color: var(--mordos_black);
+  color: var(--mordos_white);
 }

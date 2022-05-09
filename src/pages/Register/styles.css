@@ -1,0 +1,17 @@
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.register-content {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.register-form {
+  width: 50%;
+}

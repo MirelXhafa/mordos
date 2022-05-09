@@ -6,13 +6,21 @@ interface ButtonProps {
   classNames?: string;
   styles?: CSSProperties;
   block?: boolean;
+  [x: string]: any;
 }
 
-const Button: React.FC<ButtonProps> = ({ text, classNames, styles, block }) => {
+const Button: React.FC<ButtonProps> = ({
+  text,
+  classNames,
+  styles,
+  block,
+  ...rest
+}) => {
   return (
     <button
       className={`btn ${classNames} ${block ? "btn-block" : ""}`}
       style={styles}
+      {...rest}
     >
       {text}
     </button>
