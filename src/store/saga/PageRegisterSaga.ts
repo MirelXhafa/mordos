@@ -9,6 +9,7 @@ import {
   takeEvery,
   takeLatest,
 } from "redux-saga/effects";
+import history from "../../utilities/history";
 import Users from "../../utilities/Users/User";
 import PageRegisterActions from "../actions/PageRegisterAction";
 
@@ -30,10 +31,11 @@ function* workerPageRegister(): SagaIterator {
         const data = registerUser?.data;
         const errorMessage = registerUser?.message;
 
-        console.log("here: ", registerUser);
+        // console.log("here: ", registerUser);
 
         if (!error) {
           yield put(PageRegisterActions.PageRegisterUserSaveSuccess(data));
+          yield call([history, history.push], "/login");
         } else {
           yield put(
             PageRegisterActions.PageRegisterUserSaveFailure({

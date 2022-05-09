@@ -1,11 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Router } from "react-router-dom";
 import AppRoutes from "./routes/AppRoutes";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
 import AuthProvider from "./providers/AuthProvider";
+import history from "./utilities/history";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -14,7 +15,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
+      <BrowserRouter history={history}>
         <AuthProvider>
           <AppRoutes />
         </AuthProvider>
