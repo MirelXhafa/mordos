@@ -1,16 +1,49 @@
 .menu-bar {
-  display: "flex";
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
   background-color: var(--primary-white);
-  padding: 7px 5px;
+  padding: 0px 5px;
   border-bottom: 1px solid var(--border-color-grey);
+  height: 40px;
 }
 
 .menu-bar-logo {
   padding: 7px 5px;
-  border-radius: 8;
 }
 
 .menu-bar-logo:hover {
   background-color: var(--mordos_black);
+  color: var(--mordos_white);
+}
+
+.menu-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu-container ul {
+  margin: 0;
+  padding: 0;
+  margin-right: 15px;
+}
+.menu-container ul li {
+  list-style-type: none;
+  padding: 10px 15px;
+}
+
+.menu-container ul li a {
+  text-decoration: none;
+  color: var(--mordos_black);
+}
+
+.menu-container ul li:hover {
+  background-color: var(--mordos_black);
+}
+
+.menu-container ul li:hover a {
   color: var(--mordos_white);
 }

@@ -1,0 +1,38 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+}
+
+.backdrop.visible {
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal {
+  width: 50%;
+  background-color: var(--mordos_white);
+  padding: 15px;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* padding-bottom: 10px; */
+  border-bottom: 1px solid var(--border-color-grey);
+}
+
+.modal-content {
+  padding-top: 10px;
+  max-height: 500px;
+  overflow-y: scroll;
+}
